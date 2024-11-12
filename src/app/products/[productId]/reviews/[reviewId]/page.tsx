@@ -1,17 +1,17 @@
-"use client";
 function getRandomInt(count: number) {
 	return Math.floor(Math.random() * count);
 }
 
-export default function ReviewDetail({
+export default async function ReviewDetail({
 	params,
 }: {
-	params: {
+	params: Promise<{
 		productId: string;
 		reviewId: string;
-	};
+	}>;
 }) {
-	console.log(params);
+	const args = await params;
+	console.log(args);
 	const random = getRandomInt(2);
 	console.log("Random:", random);
 	if (random == 1) {
@@ -20,7 +20,7 @@ export default function ReviewDetail({
 
 	return (
 		<h1>
-			Review {params.reviewId} for product {params.productId}
+			Review {args.reviewId} for product {args.productId}
 		</h1>
 	);
 }
